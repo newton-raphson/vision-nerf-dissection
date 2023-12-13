@@ -1,0 +1,12 @@
+expname = unseen_without_training
+ckptdir = /work/mech-ai-scratch/samundra/experiments/ee526/vision-nerf-dissection/experiment/without_training
+ckpt_path = /work/mech-ai-scratch/samundra/experiments/ee526/vision-nerf-dissection/weights/nmr_500000.pth
+data_path = /work/mech-ai-scratch/samundra/experiments/ee526/vision-nerf-dissection/experiment/unseen_categories
+outdir = /work/mech-ai-scratch/samundra/experiments/ee526/vision-nerf-dissection/experiment/without_training
+img_hw = [256, 256]
+chunk_size = 8192 # Increase this if you have large GPU memory
+mlp_block_num = 6
+white_bkgd = True
+im_feat_dim = 512
+focal= 40
+radius= 1

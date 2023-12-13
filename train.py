@@ -102,7 +102,7 @@ def train(args):
     train_vis_dataset = eval_dataset_dict[args.data_type](args, 'train')
     train_vis_subset = torch.utils.data.Subset(train_vis_dataset, train_indices)
     train_vis_loader = DataLoader(train_vis_subset, batch_size=1, shuffle=False)
-
+    print("loaded_train_vis_dataset")
     # Create validation dataset
     val_dataset = eval_dataset_dict[args.data_type](args, 'val')
     val_indices = args.val_indices
@@ -203,45 +203,45 @@ def train(args):
                 if global_step % args.i_img == 0:
                     model.switch_to_eval()
                     
-                    print('Logging a random validation view...')
-                    output_dicts = []
-                    src_imgs = []
-                    gt_imgs = []
+                    # print('Logging a random validation view...')
+                    # output_dicts = []
+                    # src_imgs = []
+                    # gt_imgs = []
+                    # print('val_loader: ', val_loader)
+                    # for val_data in val_loader:
+                    #     pairs = get_views(val_data, args.val_src_views, args.val_tgt_views)
+                    #     for idx, pair in enumerate(pairs):
+                    #         tmp_ray_sampler = RaySamplerSingleImage(pair, device, render_stride=args.render_stride)
+                    #         output_dict = render_image(args, model, tmp_ray_sampler, projector, args.render_stride)
+                    #         src_img, gt_img = get_imgs_from_sampler(tmp_ray_sampler, args.render_stride)
 
-                    for val_data in val_loader:
-                        pairs = get_views(val_data, args.val_src_views, args.val_tgt_views)
-                        for idx, pair in enumerate(pairs):
-                            tmp_ray_sampler = RaySamplerSingleImage(pair, device, render_stride=args.render_stride)
-                            output_dict = render_image(args, model, tmp_ray_sampler, projector, args.render_stride)
-                            src_img, gt_img = get_imgs_from_sampler(tmp_ray_sampler, args.render_stride)
-
-                            output_dicts.append(output_dict)
-                            src_imgs.append(src_img)
-                            gt_imgs.append(gt_img)
+                    #         output_dicts.append(output_dict)
+                    #         src_imgs.append(src_img)
+                    #         gt_imgs.append(gt_img)
                     
-                    log_view_to_tb(writer, global_step, src_imgs,
-                                gt_imgs, output_dicts, len(args.val_tgt_views), prefix=f'val/')
+                    # log_view_to_tb(writer, global_step, src_imgs,
+                    #             gt_imgs, output_dicts, len(args.val_tgt_views), prefix=f'val/')
 
                     torch.cuda.empty_cache()
 
-                    print('Logging current training view...')
-                    output_dicts = []
-                    src_imgs = []
-                    gt_imgs = []
+                    # print('Logging current training view...')
+                    # output_dicts = []
+                    # src_imgs = []
+                    # gt_imgs = []
 
-                    for vis_data in train_vis_loader:
-                        pairs = get_views(vis_data, args.train_src_views, args.train_tgt_views)
-                        for idx, pair in enumerate(pairs):
-                            tmp_ray_sampler = RaySamplerSingleImage(pair, device, render_stride=args.render_stride)
-                            output_dict = render_image(args, model, tmp_ray_sampler, projector, args.render_stride)
-                            src_img, gt_img = get_imgs_from_sampler(tmp_ray_sampler, args.render_stride)
+                    # for vis_data in train_vis_loader:
+                    #     pairs = get_views(vis_data, args.train_src_views, args.train_tgt_views)
+                    #     for idx, pair in enumerate(pairs):
+                    #         tmp_ray_sampler = RaySamplerSingleImage(pair, device, render_stride=args.render_stride)
+                    #         output_dict = render_image(args, model, tmp_ray_sampler, projector, args.render_stride)
+                    #         src_img, gt_img = get_imgs_from_sampler(tmp_ray_sampler, args.render_stride)
 
-                            output_dicts.append(output_dict)
-                            src_imgs.append(src_img)
-                            gt_imgs.append(gt_img)
+                    #         output_dicts.append(output_dict)
+                    #         src_imgs.append(src_img)
+                    #         gt_imgs.append(gt_img)
 
-                    log_view_to_tb(writer, global_step, src_imgs,
-                                gt_imgs, output_dicts, len(args.train_tgt_views), prefix=f'train/')
+                    # log_view_to_tb(writer, global_step, src_imgs,
+                    #             gt_imgs, output_dicts, len(args.train_tgt_views), prefix=f'train/')
 
                     torch.cuda.empty_cache()
 

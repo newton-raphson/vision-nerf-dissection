@@ -74,14 +74,22 @@ class Projector():
         Returns:
             Pixel locations [batch, #views, N_rays, N_samples, 2], xyz_c [batch, #views, N_rays*N_samples, 4]
         '''
+        # print("The shape of xyz is: ", xyz.shape)
+        # print("The shape of train_ints is: ", train_ints.shape)
+        # print("The shape of train_exts is: ", train_exts.shape)
         batch, N_rays, N_samples, _ = xyz.shape
+
         xyz = xyz.reshape(batch, -1, 3)  # [batch, n_points, 3]
         num_views = train_ints.shape[1]
         train_intrinsics = train_ints  # [batch, n_views, 4, 4]
         train_poses = train_exts  # [batch, n_views, 4, 4]
+        # print("The shape of train_poses is: ", train_poses.shape)
         xyz_h = torch.cat([xyz, torch.ones_like(xyz[..., :1])], dim=-1)  # [batch, n_points, 4]
-        
+        # print("The shape of xyz_h is: ", xyz_h.shape)
         xyz_c = torch.inverse(train_poses) @ (xyz_h.permute([0, 2, 1])[:, None].repeat(1, num_views, 1, 1)) # camera_coodrinates
+        # print("The shape of xyz_c is: ",xyz_c.shape)
+        # print("The shape of intrinsics is: ",train_intrinsics.shape)
+        # train_intrinsics = train_intrinsics.permute(0, 1, 3, 2)  # Reshape train_intrinsics to [1, 1, 3, 4]
         projections = train_intrinsics @ xyz_c # [batch, n_views, 4, n_points]
         projections = projections.permute(0, 1, 3, 2)  # [batch, n_views, n_points, 4]
         pixel_locations = projections[..., :2] / torch.clamp(projections[..., 2:3], min=1e-8)  # [batch, n_views, n_points, 2]

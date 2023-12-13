@@ -314,6 +314,10 @@ def gen_video(args):
                 torch.cuda.empty_cache()
 
             imgs = np.stack(imgs, 0)
+            # Create a folder to save the output
+            # Save poses and intrinsics
+            np.save(os.path.join(out_folder, 'poses.npy'), render_poses)
+            np.save(os.path.join(out_folder, 'intrinsics.npy'), dataset.intrinsics)
             imageio.mimsave(os.path.join(out_folder, f'output.gif'), imgs, fps=12)
 if __name__ == '__main__':
     parser = config_parser()

@@ -81,9 +81,9 @@ def config_parser():
                         help='render with large stride for validation to save time')
 
     ########## logging/saving options ##########
-    parser.add_argument('--i_print', type=int, default=100, help='frequency of terminal printout')
-    parser.add_argument('--i_img', type=int, default=1000, help='frequency of tensorboard image logging')
-    parser.add_argument('--i_weights', type=int, default=25000, help='frequency of weight ckpt saving')
+    parser.add_argument('--i_print', type=int, default=10, help='frequency of terminal printout')
+    parser.add_argument('--i_img', type=int, default=10, help='frequency of tensorboard image logging')
+    parser.add_argument('--i_weights', type=int, default=500, help='frequency of weight ckpt saving')
     parser.add_argument('--train_indices', type=int, nargs='+', default=[0, 100, 200],
                         help='indices for visualization of training data')
     parser.add_argument('--train_src_views', type=int, nargs='+', default=[0, 0, 0],

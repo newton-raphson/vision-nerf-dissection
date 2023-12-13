@@ -1,0 +1,12 @@
+expname = eiffel_after_scatch
+ckptdir = /work/mech-ai-scratch/samundra/experiments/ee526/vision-nerf-dissection/experiment
+ckpt_path = /work/mech-ai-scratch/samundra/experiments/ee526/vision-nerf-dissection/weights/ckpts/image/model_000500.pth
+data_path = /work/mech-ai-scratch/samundra/experiments/ee526/vision-nerf-dissection/experiment/train_eiffel
+outdir = /work/mech-ai-scratch/samundra/experiments/ee526/vision-nerf-dissection/experiment
+img_hw = [256, 256]
+chunk_size = 16384 # Increase this if you have large GPU memory
+mlp_block_num = 6
+white_bkgd = True
+im_feat_dim = 512
+focal= 40
+radius= 1

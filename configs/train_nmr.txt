@@ -1,8 +1,12 @@
-expname = nmr
-logdir = [path to log dir]
-ckptdir = [path to ckpt dir]
-data_path = [path to nmr data]
-img_hw = [64, 64]
+#logdir = [path to log dir]
+#ckptdir = [path to ckpt dir]
+#data_path = [path to nmr data]
+expname = image
+ckptdir = ./weights/ckpts
+ckpt_path = ./weights/nmr_eiffel.pth
+data_path = ./train_eiffel
+logdir = ./weights
+img_hw = [512, 512]
 N_rand = 512
 batch_size = 1
 chunk_size = 2048

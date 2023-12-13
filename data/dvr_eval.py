@@ -84,8 +84,8 @@ class DVREvalDataset(Dataset):
             self.all_objs = self.all_objs[:1]
     
         if mode == "val" or mode == "test":
-            self.all_objs = self.all_objs[:100] # HACK to avoid reading too much things
-
+            # self.all_objs = self.all_objs[:100] # HACK to avoid reading too much things
+            self.all_objs = self.all_objs
         self.intrinsics = []
         self.poses = []
         self.rgb_paths = []
@@ -127,6 +127,7 @@ class DVREvalDataset(Dataset):
         )
 
     def __getitem__(self, index):
+
         rgb_paths = self.rgb_paths[index]
         c2w_mats = np.array(self.poses[index])
         intrinsics = np.array(self.intrinsics[index])

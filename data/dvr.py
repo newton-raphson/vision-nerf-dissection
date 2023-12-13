@@ -13,7 +13,7 @@ from data.data_utils import get_nearest_pose_ids
 
 def parse_pose(path, num_views):
     cameras = np.load(path)
-
+    print("path", path)
     intrinsics = []
     c2w_mats = []
 
