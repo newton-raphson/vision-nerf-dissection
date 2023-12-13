@@ -1,4 +1,4 @@
-# Vision Transformer for NeRF-Based View Synthesis from a Single Input Image
+# Vision Transformer for NeRF-Based View Synthesis from a Single Input Image: Analysis and Dissection
 This code is adapted from ```git clone https://github.com/ken2576/vision-nerf.git``` and necessary changes are made for this to work.
 Changes are Made:
 1. train.py
