@@ -32,12 +32,14 @@ Download weights, experiment and train_eiffel from ```https://drive.google.com/d
 4. Pretrained weights are in   ```weights/nmr_500000.pth``` and trained in ```/weights/image/model_500500.pth``
 5. ```train_eiffel/``` contains the view used for training eiffel and for testing everything is inside  ```experiment/```
 6. Run inference script 
-```python gen_real.py --config [path to config file] 
+```
+python gen_real.py --config [path to config file] 
+
 ```
 
 
 ## Acknowledgement
 
-This code is based on [DPT](https://github.com/isl-org/DPT), [IBRNet](https://github.com/googleinterns/IBRNet) and [PixelNeRF](https://github.com/sxyu/pixel-nerf).
+This code is based on[VisionNERF](https://github.com/ken2576/vision-nerf), [DPT](https://github.com/isl-org/DPT), [IBRNet](https://github.com/googleinterns/IBRNet) and [PixelNeRF](https://github.com/sxyu/pixel-nerf).
 
 
